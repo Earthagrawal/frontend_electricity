@@ -8,132 +8,133 @@ st.set_page_config(
     layout="wide"
 )
 
-# Custom CSS for vibrant background
+# Custom CSS - organized and cleaned up
 st.markdown("""
 <style>
+    /* === BACKGROUND === */
     .stApp {
         background: linear-gradient(135deg, 
             #70328f 0%, 
-            #613278 20%, 
-            #4a275c 40%, 
-            #361845 60%, 
-            #4a1c61 80%, 
-            #622580 100%);
-        background-size: 400% 400%;
-        animation: gradientShift 18s ease infinite;
+            #613278 25%, 
+            #4a275c 50%, 
+            #622580 75%, 
+            #70328f 100%);
+        background-size: 300% 300%;
+        animation: circularGradient 20s ease infinite;
     }
     
-    @keyframes gradientShift {
+    @keyframes circularGradient {
         0% { background-position: 0% 50%; }
+        25% { background-position: 50% 0%; }
         50% { background-position: 100% 50%; }
+        75% { background-position: 50% 100%; }
         100% { background-position: 0% 50%; }
     }
     
-    /* Make text more readable on vibrant background */
-    .stMarkdown, .stText, h1, h2, h3, p {
+    /* === TEXT COLORS === */
+    .stMarkdown, .stText, h1, h2, h3, p, label {
         color: white !important;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
     
-    /* Style input containers */
+    /* === INPUT FIELDS === */
     .stNumberInput > div > div > input,
     .stSelectbox > div > div > div,
     .stSlider > div > div > div {
-        background-color: rgba(0, 0, 0, 0.8) !important;
+        background-color: rgba(255, 255, 255, 0.15) !important;
         color: white !important;
-        border-radius: 10px !important;
-        border: 2px solid rgba(255, 255, 255, 0.3) !important;
-    }
-    
-    /* Special styling for selectbox to ensure black background */
-    .stSelectbox > div > div > div > div {
-        background-color: rgba(0, 0, 0, 0.9) !important;
-        color: white !important;
-    }
-    
-    /* Slider styling with light blue */
-    .stSlider > div > div > div > div {
-        background-color: #5DADE2 !important;
-    }
-    
-    .stSlider .stSliderTrack > div {
-        background-color: #5DADE2 !important;
-    }
-    
-    /* Style the main containers */
-    .element-container {
-        background-color: rgba(255, 255, 255, 0.1) !important;
-        border-radius: 15px !important;
-        padding: 20px !important;
-        backdrop-filter: blur(10px) !important;
+        border-radius: 8px !important;
         border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        margin: 10px 0px !important;
     }
     
-    /* Success/Error messages */
-    .stSuccess {
-        background-color: rgba(0, 255, 0, 0.2) !important;
-        border: 2px solid #00ff00 !important;
-        border-radius: 10px !important;
-        backdrop-filter: blur(10px) !important;
+    /* Dropdown options */
+    .stSelectbox > div > div > div > div {
+        background-color: rgba(30, 30, 30, 0.95) !important;
+        color: white !important;
     }
     
-    .stError {
-        background-color: rgba(255, 0, 0, 0.2) !important;
-        border: 2px solid #ff0000 !important;
-        border-radius: 10px !important;
-        backdrop-filter: blur(10px) !important;
+    /* === SLIDER STYLING === */
+    .stSlider > div > div > div > div {
+        background-color: #a17142 !important;
     }
     
-    /* Button styling */
+    /* === CONTAINERS (removed glass effect) === */
+    .element-container {
+        background-color: transparent !important;
+        border: none !important;
+        backdrop-filter: none !important;
+        padding: 10px !important;
+        margin: 5px 0px !important;
+    }
+    
+    /* === PREDICT BUTTON === */
     .stButton > button {
-        background: linear-gradient(45deg, #ff6b6b, #4ecdc4) !important;
+        background: #4a4a4a !important;
         color: white !important;
         border: none !important;
-        border-radius: 25px !important;
-        padding: 15px 30px !important;
-        font-size: 18px !important;
-        font-weight: bold !important;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.3) !important;
-        transition: all 0.3s ease !important;
+        border-radius: 8px !important;
+        padding: 12px 24px !important;
+        font-size: 16px !important;
+        font-weight: 500 !important;
+        transition: all 0.2s ease !important;
     }
     
     .stButton > button:hover {
-        transform: translateY(-3px) !important;
-        box-shadow: 0 12px 35px rgba(0,0,0,0.4) !important;
-        background: linear-gradient(45deg, #4ecdc4, #ff6b6b) !important;
+        background: #5a5a5a !important;
+        transform: translateY(-1px) !important;
     }
     
-    /* Title styling */
+    /* === MESSAGES === */
+    .stSuccess {
+        background-color: rgba(0, 200, 0, 0.15) !important;
+        border: 1px solid rgba(0, 255, 0, 0.3) !important;
+        border-radius: 8px !important;
+    }
+    
+    .stError {
+        background-color: rgba(255, 0, 0, 0.15) !important;
+        border: 1px solid rgba(255, 0, 0, 0.3) !important;
+        border-radius: 8px !important;
+    }
+    
+    /* === TITLE === */
     h1 {
         text-align: center !important;
-        font-size: 3rem !important;
-        background: linear-gradient(45deg, #fff, #f0f0f0) !important;
-        -webkit-background-clip: text !important;
-        -webkit-text-fill-color: transparent !important;
-        text-shadow: none !important;
+        font-size: 2.5rem !important;
+        color: white !important;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5) !important;
+        margin-bottom: 20px !important;
+    }
+    
+    /* === SUBTITLE === */
+    .subtitle {
+        text-align: center !important;
+        font-size: 1.1rem !important;
+        color: rgba(255, 255, 255, 0.8) !important;
         margin-bottom: 30px !important;
     }
     
-    /* Subtitle styling */
-    .subtitle {
-        text-align: center !important;
-        font-size: 1.2rem !important;
-        color: rgba(255, 255, 255, 0.8) !important;
-        margin-bottom: 40px !important;
+    /* === METRICS === */
+    .metric-container {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        border-radius: 8px !important;
+        padding: 15px !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# Use your deployed FastAPI URL
+# API URL
 API_URL = "https://electricity-cost-prediction-regression.onrender.com/predict"
 
+# Header
 st.title("⚡ Urban Project Cost Predictor")
 st.markdown('<p class="subtitle">Predict electricity costs for urban projects with AI-powered precision</p>', unsafe_allow_html=True)
 
-# Create columns for better layout
+# Layout
 col1, col2 = st.columns(2)
 
+# INPUT SECTION
 with col1:
     st.subheader("🏗️ Property Details")
     site_area = st.number_input("Site Area (sq ft)", min_value=1, value=1500)
@@ -146,16 +147,16 @@ with col2:
     recycling_rate = st.slider("Recycling Rate (%)", min_value=1, value=60)
     utilisation_rate = st.slider("Utilisation Rate (%)", min_value=1, value=75)
 
+# Additional inputs in separate row
 col3, col4 = st.columns(2)
 with col3:
     air_qality_index = st.number_input("Air Quality Index", min_value=1, value=150)
 with col4:
     issue_reolution_time = st.number_input("Issue Resolution Time (hours)", min_value=1, value=24)
 
-# Add some spacing
 st.markdown("<br>", unsafe_allow_html=True)
 
-# Predict button
+# PREDICTION SECTION
 if st.button("🔮 Predict Cost", type="primary", use_container_width=True):
     input_data = {
         "site_area": site_area,
@@ -178,16 +179,16 @@ if st.button("🔮 Predict Cost", type="primary", use_container_width=True):
                 prediction_value = result[1]
                 st.success(f"🎯 **Predicted Electricity Cost: ${prediction_value:,.2f}**")
                 
-                # Add some fun metrics
+                # Cost breakdown with cleaner metrics
                 st.markdown("### 📈 Cost Breakdown Analysis")
                 col_a, col_b, col_c = st.columns(3)
                 with col_a:
-                    st.metric("💡 Monthly Est.", f"${prediction_value/12:,.2f}", delta="per month")
+                    st.metric("💡 Monthly Est.", f"${prediction_value/12:,.2f}")
                 with col_b:
-                    st.metric("⚡ Daily Est.", f"${prediction_value/365:,.2f}", delta="per day")
+                    st.metric("⚡ Daily Est.", f"${prediction_value/365:,.2f}")
                 with col_c:
                     efficiency_score = max(1, 100 - (prediction_value / site_area * 10))
-                    st.metric("🌱 Efficiency Score", f"{efficiency_score:.0f}%", delta="energy rating")
+                    st.metric("🌱 Efficiency Score", f"{efficiency_score:.0f}%")
                     
             else:
                 st.success(f"✅ {result}")
@@ -199,15 +200,13 @@ if st.button("🔮 Predict Cost", type="primary", use_container_width=True):
     except Exception as e:
         st.error(f"❌ Unexpected error: {str(e)}")
 
-# Footer with animated elements
+# FOOTER
 st.markdown("<br><br>", unsafe_allow_html=True)
 st.markdown("---")
 st.markdown("""
 <div style='text-align: center; padding: 20px;'>
-    <p style='font-size: 16px; color: rgba(255,255,255,0.8);'>
-        🚀 Powered by Machine Learning & FastAPI | 
-        🎨 Enhanced with Dynamic Gradients | 
-        ⚡ Real-time AI Predictions
+    <p style='font-size: 14px; color: rgba(255,255,255,0.6);'>
+        🚀 Powered by Machine Learning & FastAPI | ⚡ Real-time AI Predictions
     </p>
 </div>
 """, unsafe_allow_html=True)
