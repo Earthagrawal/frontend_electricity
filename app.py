@@ -13,13 +13,14 @@ st.markdown("""
 <style>
     .stApp {
         background: linear-gradient(135deg, 
-            #667eea 0%, 
-            #764ba2 25%, 
-            #f093fb 50%, 
-            #f5576c 75%, 
-            #4facfe 100%);
+            #70328f 0%, 
+            #613278 20%, 
+            #4a275c 40%, 
+            #361845 60%, 
+            #4a1c61 80%, 
+            #622580 100%);
         background-size: 400% 400%;
-        animation: gradientShift 15s ease infinite;
+        animation: gradientShift 18s ease infinite;
     }
     
     @keyframes gradientShift {
@@ -38,9 +39,25 @@ st.markdown("""
     .stNumberInput > div > div > input,
     .stSelectbox > div > div > div,
     .stSlider > div > div > div {
-        background-color: rgba(255, 255, 255, 0.9) !important;
+        background-color: rgba(0, 0, 0, 0.8) !important;
+        color: white !important;
         border-radius: 10px !important;
         border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    }
+    
+    /* Special styling for selectbox to ensure black background */
+    .stSelectbox > div > div > div > div {
+        background-color: rgba(0, 0, 0, 0.9) !important;
+        color: white !important;
+    }
+    
+    /* Slider styling with light blue */
+    .stSlider > div > div > div > div {
+        background-color: #5DADE2 !important;
+    }
+    
+    .stSlider .stSliderTrack > div {
+        background-color: #5DADE2 !important;
     }
     
     /* Style the main containers */
