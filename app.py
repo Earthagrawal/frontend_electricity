@@ -3,7 +3,7 @@ import requests
 
 # Set page config
 st.set_page_config(
-    page_title="Urban Project Cost Predictor",
+    page_title="Urban Project Electricity Cost Predictor",
     page_icon="⚡",
     layout="wide"
 )
