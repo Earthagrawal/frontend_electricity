@@ -176,19 +176,10 @@ if st.button("🔮 Predict Cost", type="primary", use_container_width=True):
         if response.status_code == 200:
             result = response.json()
             if isinstance(result, list) and len(result) == 2:
-                prediction_value = result[1]
-                st.success(f"🎯 **Predicted Electricity Cost: ${prediction_value:,.2f}**")
-                
-                # Cost breakdown with cleaner metrics
-                st.markdown("### 📈 Cost Breakdown Analysis")
-                col_a, col_b, col_c = st.columns(3)
-                with col_a:
-                    st.metric("💡 Monthly Est.", f"${prediction_value/12:,.2f}")
-                with col_b:
-                    st.metric("⚡ Daily Est.", f"${prediction_value/365:,.2f}")
-                with col_c:
-                    efficiency_score = max(1, 100 - (prediction_value / site_area * 10))
-                    st.metric("🌱 Efficiency Score", f"{efficiency_score:.0f}%")
+                monthly_cost = float(result[1])
+                daily_cost   = monthly_cost / 30
+                st.success(f"🎯 **Monthly Electricity Cost: ${monthly_cost:,.2f}**")
+                st.metric(label="Daily Average", value=f"${daily_cost:,.2f}")
                     
             else:
                 st.success(f"✅ {result}")
